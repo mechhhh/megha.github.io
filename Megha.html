@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Megha | Personal Website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+/* 🌫️ ANIMATED AMBIENT BACKGROUND */
+
+body{
+background: linear-gradient(-45deg, #0f1117, #1a1f35, #151a28, #111827);
+background-size: 400% 400%;
+animation: gradientMove 22s ease infinite;
+color:white;
+line-height:1.7;
+overflow-x:hidden;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* subtle smoke glow */
+body::before,
+body::after{
+content:'';
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle, rgba(168,85,247,0.12), transparent 70%);
+filter:blur(80px);
+z-index:-1;
+animation: floatSmoke 18s ease-in-out infinite alternate;
+}
+
+body::after{
+background:radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%);
+top:60%;
+left:60%;
+animation-delay:6s;
+}
+
+@keyframes floatSmoke{
+0%{transform:translate(0,0);}
+100%{transform:translate(80px,-60px);}
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero img{
+width:170px;
+height:170px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #c084fc;
+box-shadow:0 0 30px #9333ea;
+margin-bottom:20px;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0);}
+}
+
+.hero h1{
+font-size:56px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#cbd5e1;
+margin-bottom:25px;
+}
+
+.button{
+padding:12px 26px;
+border-radius:25px;
+background:#9333ea;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.button:hover{
+transform:scale(1.08);
+box-shadow:0 0 20px #9333ea;
+}
+
+/* SECTIONS */
+
+section{
+max-width:1200px;
+margin:auto;
+padding:90px 20px;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+h2{
+margin-bottom:20px;
+color:#c084fc;
+}
+
+/* CARDS */
+
+.card{
+background: rgba(22,26,35,0.75);
+backdrop-filter: blur(10px);
+padding:30px;
+border-radius:20px;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.achievement-box{
+background: rgba(22,26,35,0.75);
+padding:35px;
+border-radius:20px;
+text-align:center;
+}
+
+.achievement-box h1{
+font-size:48px;
+color:#c084fc;
+}
+
+.cert-list{
+list-style:none;
+margin-top:10px;
+font-size:14px;
+color:#cbd5e1;
+}
+
+/* FEATURED PROJECT */
+
+.featured-project{
+background: linear-gradient(135deg, rgba(147,51,234,0.25), rgba(79,70,229,0.25));
+border-radius:22px;
+padding:40px;
+backdrop-filter: blur(12px);
+}
+
+.feature-tags span{
+display:inline-block;
+background:rgba(0,0,0,0.35);
+padding:8px 14px;
+border-radius:20px;
+margin:6px;
+font-size:13px;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+
+.gallery img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:15px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* 🔍 LIGHTBOX */
+
+.lightbox{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:999;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+
+.lightbox img{
+max-width:80%;
+max-height:80%;
+border-radius:15px;
+}
+
+.lightbox p{
+margin-top:15px;
+color:#cbd5e1;
+text-align:center;
+max-width:70%;
+}
+
+.lightbox .nav{
+position:absolute;
+top:50%;
+font-size:40px;
+color:white;
+cursor:pointer;
+user-select:none;
+}
+
+.prev{left:30px;}
+.next{right:30px;}
+.close{
+top:20px;
+right:30px;
+position:absolute;
+font-size:35px;
+cursor:pointer;
+}
+
+/* SOCIAL */
+
+.social a{
+display:inline-block;
+margin:10px;
+padding:10px 18px;
+border-radius:20px;
+background:linear-gradient(135deg,#9333ea,#c084fc);
+color:white;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+color:#94a3b8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+<img src="megha.jpg" alt="Megha profile picture">
+<h1>Hi, I'm Megha🫧</h1>
+<p>Salesforce Developer • Problem Solver • Tech Explorer</p>
+<a href="#about" class="button">Explore My World ↓</a>
+</div>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="card">
+<p>
+I’m Megha — a Salesforce Developer who genuinely enjoys building systems that make life easier for people.
+Professionally, I thrive in problem-solving, automation, and designing intelligent solutions that actually help users.
+</p>
+<p><br>
+Beyond work, I’m deeply fond of reading books and love getting lost in good literature.
+I’m quite active on Instagram too, where I enjoy connecting with people and sharing little pieces of life.
+</p>
+<p><br>
+I love talking to new people, exchanging ideas, and learning from different perspectives.
+PS — I zone out a little too quickly sometimes, so please don’t get hurt if I stop listening mid-conversation…
+I promise it’s not personal 😄
+</p>
+</div>
+</section>
+
+<section>
+<h2>Professional Highlights</h2>
+<div class="achievements">
+<div class="achievement-box">
+<h1>3x</h1>
+<p>Salesforce Certified</p>
+<ul class="cert-list">
+<li>Platform Administrator</li>
+<li>Service Cloud Consultant</li>
+<li>AI Associate</li>
+</ul>
+</div>
+<div class="achievement-box"><h1>🏆</h1><p>Agentblazer Champion</p></div>
+<div class="achievement-box"><h1>⭐</h1><p>Trailhead Ranger</p></div>
+</div>
+</section>
+
+<section>
+<h2>What I've Built</h2>
+<div class="featured-project">
+<h2>🚀 CaseSenseAI</h2>
+<p>
+An AI-driven support intelligence system that summarizes cases, detects customer sentiment,
+and guides agents on escalation and resolution strategies.
+</p>
+<div class="feature-tags">
+<span>AI</span><span>Salesforce</span><span>Automation</span><span>Sentiment</span>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Snapshots</h2>
+<div class="gallery">
+<img src="megha1.jpg" alt="Fond of reading and love literature">
+<img src="megha2.jpg" alt="I love Beaches">
+<img src="shell.jpg" alt="Collecting Souvenirs is my hobby">
+<img src="chai.jpg" alt="Where i come back after all day work">
+</div>
+</section>
+
+<section>
+<h2>Let's Connect</h2>
+<div class="social">
+<a href="https://www.linkedin.com/in/megha-yedlapally-638850172/" target="_blank">LinkedIn</a>
+<a href="https://www.instagram.com/meghasauruss" target="_blank">Instagram</a>
+<a href="https://www.pinterest.com/" target="_blank">Pinterest</a>
+</div>
+</section>
+
+<footer>
+Built from scratch with by Megha👨‍🔧
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+<span class="close" onclick="closeLightbox()">×</span>
+<span class="nav prev" onclick="changeImg(-1)">❮</span>
+<img id="lightboxImg">
+<p id="lightboxText"></p>
+<span class="nav next" onclick="changeImg(1)">❯</span>
+</div>
+
+<script>
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+sections.forEach(sec => {
+if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+sec.classList.add("show");
+}
+});
+});
+
+/* LIGHTBOX LOGIC */
+const images = document.querySelectorAll(".gallery img");
+let index = 0;
+
+images.forEach((img,i)=>{
+img.onclick=()=>{
+index=i;
+openLightbox();
+}
+});
+
+function openLightbox(){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightboxImg").src=images[index].src;
+document.getElementById("lightboxText").innerText=images[index].alt;
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+
+function changeImg(step){
+index=(index+step+images.length)%images.length;
+openLightbox();
+}
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape") closeLightbox();
+if(e.key==="ArrowRight") changeImg(1);
+if(e.key==="ArrowLeft") changeImg(-1);
+});
+</script>
+
+</body>
+</html>
